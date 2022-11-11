@@ -272,3 +272,131 @@ There are three types of error messages
     - Finalize is a method always invoked by garbage collector just before
     destroying an object to perform cleanup activities.
     - Once the finalize method is completed immediately the garbage collector destroys that object.
+    
+    ## Throw Keyword:
+    
+    ```java
+    class Expdemo {
+    public static void main(String args[]){
+    System.out.println(10/0);
+    }
+    }
+    ```
+    
+    1. In the above example, the main method is creating the exception object
+    and handing it over to jvm. Which means exception object is created
+    implicitly and being handed over to jvm however sometimes we may want
+    to create exception object explicitly and hand it over to jvm
+    
+    $$
+    
+    What is Throw Keyword?
+    $$
+    
+    Throw keyword is used to create an exception object manually and hand it
+    over to the jvm.
+    
+    **Syntax:**
+    
+    > <Exception-name> ex = new <Exception-name>("message");
+    throw ex;
+    > 
+    
+    > throw new <exception-name>("message");
+    > 
+    
+    ### **Program1:**
+    
+    ```java
+    public  class Expdemo {
+        public static void main(String[] args) {
+            System.out.println(10 / 0);
+        }
+    }
+    ```
+    
+    Here, the main method is responsible to create an exception object and
+    hand it over to jvm.
+    
+    ### **Program2:**
+    
+    ```java
+    public  class Expdemo {
+        public static void main(String[] args) {
+            throw new ArithmeticException("/ by zero");
+        }
+    }
+    ```
+    
+    Here, programmers are responsible to create the exception object explicitly
+    and hand it over to jvm.
+    
+    ### Rule No 1:
+    
+    If exception object is not initialized then we get NullPointerException
+    
+    ```java
+    public  class Expdemo {
+        static ArithmeticException e = new ArithmeticException();
+        public static void main(String[] args) {
+            throw e;
+        }
+    ```
+    
+    ```java
+    public  class Expdemo {
+        static ArithmeticException e;
+        public static void main(String[]args) {
+            throw e;
+        }
+    }
+    ------
+    Output:
+    Exception in thread "main" java.lang.NullPointerException: Cannot throw exception because "Expdemo.e" is null
+    	at Expdemo.main(Expdemo.java:4)
+    ```
+    
+    This code will throw NullPointerException. Since we have not initialized the
+    ArithmeticException object.
+    
+    ### Rule No 2:
+    
+    After throw statement, we are not allowed to write any statement
+    directly else we will get compile time error saying : “Unreachable
+    statement”
+    
+    ```java
+    class Expdemo {
+    public static void main(String args[])(){
+    System.out.println(10/0);
+    System.out.println("hello");
+    }
+    }
+    ```
+    
+    ![Compile time error unreachable statement](Exceptions%20d655eb61cfa34f3ab07b481d5703f1d4/Untitled.png)
+    
+    Compile time error unreachable statement
+    
+    ### Rule No 3:
+    
+    We can use the throw keyword only for throwable types. If we are
+    trying to use for normal java objects we will get compile time error saying :
+    “Incompatible types required java.lang.throwable”
+    
+    ![Untitled](Exceptions%20d655eb61cfa34f3ab07b481d5703f1d4/Untitled%201.png)
+    
+    Compile time error:
+    java: incompatible types: Expdemo cannot be converted to java.lang.Throwable
+    
+    ```java
+    public  class Expdemo extends RuntimeException {
+        public static void main(String[] args) {
+            throw new Expdemo();
+        }
+    }
+    -----
+    Output:
+    Exception in thread "main" Expdemo
+    	at Expdemo.main(Expdemo.java:3)
+    ```
