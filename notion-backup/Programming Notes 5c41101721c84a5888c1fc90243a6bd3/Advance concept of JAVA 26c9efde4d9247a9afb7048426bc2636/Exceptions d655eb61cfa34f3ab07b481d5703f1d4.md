@@ -242,3 +242,33 @@ There are three types of error messages
     / by zero
     Statement 5
     ```
+    
+    ### Final vs Finally vs Finalize
+    
+    **Final Keyword:**
+    
+    - Final is a modifier applicable for classes, methods and variables
+    - If a class is final then we can’t extend that class, we can't inherit class
+    neither we can create child class of that class
+    
+    **Finally Keyword:**
+    
+    - Finally is a block associated with try catch to maintain clean up code
+    - The specialty of finally block is it will be executed irrespective of whether
+    exception is raised or not raised and weather handled or not handled.
+    
+    ```java
+    try{
+    // code that generates exception
+    } catch(Exception e){
+    // handling code
+    } finally {
+    // clean up code
+    }
+    ```
+    
+    **Finalize Keyword:**
+    
+    - Finalize is a method always invoked by garbage collector just before
+    destroying an object to perform cleanup activities.
+    - Once the finalize method is completed immediately the garbage collector destroys that object.
