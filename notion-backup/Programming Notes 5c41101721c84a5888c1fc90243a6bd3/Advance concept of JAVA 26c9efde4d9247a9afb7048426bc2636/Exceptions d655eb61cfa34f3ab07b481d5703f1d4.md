@@ -207,7 +207,7 @@ There are three types of error messages
                 System.out.println(10/0);
                 System.out.println("Statement 3");
             } catch (Exception e) {
-                System.out.println(e.toString());
+                System.out.println(e.toString());d
             }
             System.out.println("Statement 5");
         }
@@ -400,3 +400,93 @@ There are three types of error messages
     Exception in thread "main" Expdemo
     	at Expdemo.main(Expdemo.java:3)
     ```
+    
+    Throws Keyword
+    
+    If there is a possibility of our code raising a checked exception then we will
+    get a compile time error if we don’t handle it
+    
+    ![Untitled](Exceptions%20d655eb61cfa34f3ab07b481d5703f1d4/Untitled%202.png)
+    
+    - Above code have checked exception “FileNotFound Exception” In that case we can handle it two types
+    1. **Using Try catch :**
+    
+    ```java
+    public class Expdemo{
+        public static void main(String[] args) {
+            try {
+                PrintWriter out = new PrintWriter("abc.txt");
+            } catch (FileNotFoundException e) {
+            }
+        }
+    ```
+    
+    1. **Using Throws Keyword:**
+    
+    ```java
+    public class Expdemo{
+        public static void main(String[] args) throws FileNotFoundException {
+            PrintWriter out = new PrintWriter("abc.txt");
+        }
+    }
+    ```
+    
+    **Adding PDF  for better understanding of Rules in Throws**
+    
+    [22428501-Throws-keyword.pdf](Exceptions%20d655eb61cfa34f3ab07b481d5703f1d4/22428501-Throws-keyword.pdf)
+    
+    ## **Custom Exceptions**
+    
+    Custom expections created by developers for their usage .If they want to have IncorrectAccountExceptions , InvalidNameExceptions , like they can create it , it is called custom exceptions
+    
+    ```java
+    import java.util.Scanner;
+    
+    public class customException{
+        public static void main(String[] args) {
+            Scanner input = new Scanner(System.in);
+            System.out.println("What is your age ? ");
+            int age = input.nextInt();
+            if (age < 18 ){
+               throw new TooYoungException("you are too young");
+            } else if (age > 55) {
+               throw new TooOldException("Tou are too old");
+            }
+            else{
+                System.out.println("your details will be available");
+            }
+    
+        }
+    }
+    -----------------
+    Output:
+    What is your age ? 
+    66
+    Exception in thread "main" TooOldException: Tou are too old
+    	at customException.main(customException.java:11)
+    ```
+    
+    ```java
+    public class TooOldException extends RuntimeException{
+        public TooOldException(String message) {
+            super(message);
+        }
+    }
+    ```
+    
+    ```java
+    public class TooYoungException extends RuntimeException{
+        public TooYoungException(String message) {
+            super(message);
+        }
+    }
+    ```
+    
+    **Point to Remember**
+    
+    - We mention super() in customized exception class to make
+    description available to default exception handler
+    - It is highly recommended to define custom exceptions as unchecked
+    ie. We have to extend RuntimeException but not Exception.
+    - Throw keyword is best suitable for user defined or customized
+    exceptions but not for predefined exceptions
