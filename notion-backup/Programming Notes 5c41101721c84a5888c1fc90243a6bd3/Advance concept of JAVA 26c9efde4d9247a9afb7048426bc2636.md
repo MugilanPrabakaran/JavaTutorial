@@ -17,3 +17,5 @@
 [Modifiers](Advance%20concept%20of%20JAVA%2026c9efde4d9247a9afb7048426bc2636/Modifiers%200b60000481704734aabcbecb59e23f58.md)
 
 [Exceptions](Advance%20concept%20of%20JAVA%2026c9efde4d9247a9afb7048426bc2636/Exceptions%20d655eb61cfa34f3ab07b481d5703f1d4.md)
+
+[Collections](Advance%20concept%20of%20JAVA%2026c9efde4d9247a9afb7048426bc2636/Collections%20e16a89aa51d6475bb692c342750346d3.md)
