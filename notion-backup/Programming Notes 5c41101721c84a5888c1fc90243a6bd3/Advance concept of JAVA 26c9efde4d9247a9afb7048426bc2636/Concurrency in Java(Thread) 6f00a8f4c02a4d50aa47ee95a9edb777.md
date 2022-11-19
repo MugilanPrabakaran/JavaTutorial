@@ -482,3 +482,117 @@ public class ExecutorServiceExample {
             }
         }
         ```
+        
+        ### Thread Safety
+        
+        ![Untitled](Concurrency%20in%20Java(Thread)%206f00a8f4c02a4d50aa47ee95a9edb777/Untitled%2015.png)
+        
+        Disadvantages of Thread safety:
+        
+        1.  Thread safety is very slow 
+        2. Only one thread is able to execute 
+        
+        ### Thread Priority
+        
+        ![Untitled](Concurrency%20in%20Java(Thread)%206f00a8f4c02a4d50aa47ee95a9edb777/Untitled%2016.png)
+        
+        ![Untitled](Concurrency%20in%20Java(Thread)%206f00a8f4c02a4d50aa47ee95a9edb777/Untitled%2017.png)
+        
+        ```java
+        package FiirstPackage;
+        class Threadpriority extends Thread {
+        
+        }
+        public class Threadnew {
+            public static void main(String[] args) {
+            Threadpriority t = new Threadpriority();
+                System.out.println(t.getPriority());
+                t.setPriority(9);//if you give morethan 10 it will throw error
+                System.out.println(t.getPriority());
+        
+            }
+        }
+        -----------
+        Output:
+        5
+        9
+        ```
+        
+    
+    ## DeadLock:
+    
+    What is Deadlock?
+    
+    Deadlock is situation where two process are waiting for each other to finish.
+    
+    eg: A is waiting for B to finish simultenously B is waiting for A to finish.
+    
+     
+    
+    ![Untitled](Concurrency%20in%20Java(Thread)%206f00a8f4c02a4d50aa47ee95a9edb777/Untitled%2018.png)
+    
+    ![Untitled](Concurrency%20in%20Java(Thread)%206f00a8f4c02a4d50aa47ee95a9edb777/Untitled%2019.png)
+    
+    ```java
+    package multithreading;
+    
+    public class DeadlockDemo {
+        public static Object l1 = new Object();
+        public static Object l2 = new Object();
+    
+        public static void main(String[] a) {
+            Thread t1 = new Thread1();
+            Thread t2 = new Thread2();
+            t1.start();
+            t2.start();
+        }
+    
+        private static class Thread1 extends Thread {
+            public void run() {
+                synchronized (l1) {
+                    System.out.println("Thread 1: Holding lock 1...");
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                    }
+                    System.out.println("Thread 1: Waiting for lock 2...");
+                    synchronized (l2) {
+                        System.out.println("Thread 2: Holding lock 1 & 2...");
+                    }
+                }
+            }
+        }
+    
+        private static class Thread2 extends Thread {
+            public void run() {
+                synchronized (l2) {
+                    System.out.println("Thread 2: Holding lock 2...");
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                    }
+                    System.out.println("Thread 2: Waiting for lock 1...");
+                    synchronized (l1) {
+                        System.out.println("Thread 2: Holding lock 2 & 1...");
+                    }
+                }
+            }
+        }
+    }
+    ----------------
+    Output:
+    Thread 1 : Started in Place 1
+    Thread 2 : Started in Place 2
+    Thread 2 : Waiting to Release Thread 1
+    Thread 1 : Waiting to Release Thread 2 ///Output will go infinite until push stop button
+    ```
+    
+    ## Inter Thread Communication:
+    
+    ![Untitled](Concurrency%20in%20Java(Thread)%206f00a8f4c02a4d50aa47ee95a9edb777/Untitled%2020.png)
+    
+    ### Example of consumer and procedure
+    
+    ![Untitled](Concurrency%20in%20Java(Thread)%206f00a8f4c02a4d50aa47ee95a9edb777/Untitled%2021.png)
+    
+    ![Untitled](Concurrency%20in%20Java(Thread)%206f00a8f4c02a4d50aa47ee95a9edb777/Untitled%2022.png)
