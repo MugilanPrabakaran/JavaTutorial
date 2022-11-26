@@ -139,3 +139,62 @@ public class BookService {
 Output:
 [Book [id=101, name=Core Java, pages=400], Book [id=363, name=Hibernate, pages=180], Book [id=275, name=Spring, pages=200], Book [id=893, name=WebService, pages=300]]
 ```
+
+### Consumer Functional Interface:
+
+- Consumer<T> is an in-built functional interface introduced in Java 8.
+- Consumer can be used in all context where an object need to be consumed
+- i.e taken as input and some operation is to be performed on the object without returning any result.
+
+/**
+
+*Performs this operation on the given argument.
+
+*@param t the input argument.
+
+*/ 
+
+void accept(T t);
+
+```java
+package ConsumerInter;
+
+import java.util.function.Consumer;
+
+public class CusDemo implements Consumer<Integer> {
+/*Traditional Java way to use this method
+    @Override
+    public void accept(Integer t) {
+        System.out.println("print : "+ t);
+    }
+
+    public static void main(String[] args) {
+        CusDemo c = new CusDemo();
+        c.accept(10);
+    }*/
+
+}
+```
+
+### Predicate Functional Interface:
+
+- This Function interface used for Conditional Statement
+- we can use true/False returning functions in day to day programming we should Predicate
+- /**
+    - Evaluate this predicate on the given argument.
+    - @param t the input argument.
+    - */
+    - Boolean test(T t);
+
+### Supplier Functional Interface:
+
+- Supplier can be used in all context where there is no input but an output is expected.
+- 
+
+/**
+
+- Gets a result.
+- @return a result
+*
+
+T get();
