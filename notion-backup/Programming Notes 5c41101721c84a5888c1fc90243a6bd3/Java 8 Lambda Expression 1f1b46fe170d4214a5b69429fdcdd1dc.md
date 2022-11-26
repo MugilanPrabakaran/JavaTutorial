@@ -159,9 +159,12 @@ void accept(T t);
 ```java
 package ConsumerInter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
-public class CusDemo implements Consumer<Integer> {
+public class CusDemo  {
 /*Traditional Java way to use this method
     @Override
     public void accept(Integer t) {
@@ -172,8 +175,21 @@ public class CusDemo implements Consumer<Integer> {
         CusDemo c = new CusDemo();
         c.accept(10);
     }*/
-
+    //JAVA 8
+public static void main(String[] args) {
+/*Consumer c = (t) -> System.out.println("Print : "+ t);
+    c.accept(10);*/
+ List<Integer> list = Arrays.asList(1,2,3,4,5);
+ list.stream().forEach( (t) -> System.out.println("print : "+ t));
 }
+}
+--------------------
+Output:
+print : 1
+print : 2
+print : 3
+print : 4
+print : 5
 ```
 
 ### Predicate Functional Interface:
@@ -185,6 +201,64 @@ public class CusDemo implements Consumer<Integer> {
     - @param t the input argument.
     - */
     - Boolean test(T t);
+    
+    ```java
+    package ConsumerInter;
+    
+    import java.util.function.Predicate;
+    //Normal Method 
+    /*public class PredicateDemo implements Predicate<Integer> {
+    
+        @Override
+        public boolean test(Integer t) {
+            if (t%2 == 0) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    
+        public static void main(String[] args) {
+            PredicateDemo pd = new PredicateDemo();
+            System.out.println(pd.test(10));
+        }*/
+    //Using JAVA 8
+    public class PredicateDemo{
+        public static void main(String[] args) {
+            Predicate<Integer> p = (t)-> {
+                if(t%2 == 0){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            };
+            System.out.println(p.test(11));
+        }
+    }
+    /**/
+    Output:
+    False
+    
+    -----------
+    public class PredicateDemo{
+        public static void main(String[] args) {
+    //        Predicate<Integer> p = t -> t % 2 == 0;
+    //        System.out.println(p.test(5));
+            List<Integer> list = Arrays.asList(1,2,3,4,5);
+            //Here using filter method
+    //        list.stream().filter(p).forEach( (t) -> System.out.println("print Even: "+ t));
+            list.stream().filter(t->t%2==0).forEach( (t) -> System.out.println("print Even: "+ t));
+    
+        }
+    }
+    -------
+    Output:
+    print Even: 2
+    print Even: 4
+    ```
+    
 
 ### Supplier Functional Interface:
 
@@ -198,3 +272,48 @@ public class CusDemo implements Consumer<Integer> {
 *
 
 T get();
+
+```java
+package ConsumerInterface;
+
+import java.util.function.Supplier;
+
+public class SuppllierInterfaceDemo implements Supplier<String> {
+    @Override
+    public String get() {
+        return "Hi Mukilan";
+    }
+
+    public static void main(String[] args) {
+        SuppllierInterfaceDemo sup = new SuppllierInterfaceDemo();
+        System.out.println(sup.get());
+    }
+}
+--------------
+Output:
+Hi Mukilan
+--------------
+package ConsumerInterface;
+
+import java.util.function.Supplier;
+//Using JAVA 8
+public class SuppllierInterfaceDemo {
+    public static void main(String[] args) {
+         Supplier<String> s = () -> {return "Hi Mugilan";};
+//Optimizeing above line
+Supplier<String> s = () ->  "Hi Mugilan";
+        System.out.println(s.get());
+//Using List String
+Supplier<String> s = () ->  "Hi Mugilan";
+       // System.out.println(s.get());
+        List<String> list = Arrays.asList("a","b");
+        System.out.println(list.stream().findAny().orElseGet(s));
+    }
+
+}
+------
+Output:
+a
+//If there is no string it will print 
+Hi Mugilan
+```
