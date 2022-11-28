@@ -246,3 +246,32 @@ Output:
 [Employee{id=470, name='Bimal', dept='DEFENCE', salary=500000}, Employee{id=624, name='Sourav', dept='CORE', salary=400000}]
 //[Employee{id=176, name='Roshan', dept='IT', salary=600000}, Employee{id=388, name='Bikash', dept='CIVIL', salary=900000}, Employee{id=176, name='Prakash', dept='SOCIAL', salary=1200000}]
 ```
+
+## How to Sort List using Lambda Expression
+
+```java
+package StreaAPIDemo;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Sortlistdemo {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(9);
+        list.add(5);
+        list.add(10);
+        list.add(8);
+        //Using Normal Method
+        Collections.sort(list);//Ascending Order
+        Collections.reverse(list);//Descending Order
+        System.out.println(list);
+        //Using Java 8
+        list.stream().sorted().forEach(t -> System.out.println(t));//Ascending Order
+        list.stream().sorted(Comparator.reverseOrder()).forEach(t -> System.out.println(t));//Descending Order
+    }
+}
+```

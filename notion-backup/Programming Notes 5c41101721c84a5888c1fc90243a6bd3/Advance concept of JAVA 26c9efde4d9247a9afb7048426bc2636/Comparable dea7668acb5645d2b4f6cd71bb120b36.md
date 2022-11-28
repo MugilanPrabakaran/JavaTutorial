@@ -33,7 +33,8 @@ public class Mainclass {
         l1.add(21);
         l1.add(33);
         l1.add(11);
-        Collections.sort(l1);
+        Collections.sort(l1);//Ascending Order
+				Collections.reverse(l1);//Descending Order
         System.out.println(l1);
     }
 }
