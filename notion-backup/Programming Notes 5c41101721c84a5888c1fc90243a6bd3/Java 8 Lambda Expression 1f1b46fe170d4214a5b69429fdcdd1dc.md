@@ -7,3 +7,5 @@
 [Map() &flatMap()](Java%208%20Lambda%20Expression%201f1b46fe170d4214a5b69429fdcdd1dc/Map()%20&flatMap()%20afbe72dc59b3456ba023430da0762839.md)
 
 [Optional <?> class](Java%208%20Lambda%20Expression%201f1b46fe170d4214a5b69429fdcdd1dc/Optional%20class%20e20f5c56395847f68ba5ad335c0525f6.md)
+
+[Map and Reduce Operation](Java%208%20Lambda%20Expression%201f1b46fe170d4214a5b69429fdcdd1dc/Map%20and%20Reduce%20Operation%209d6b2a59af8c4189bec4c9c0f277a61e.md)
