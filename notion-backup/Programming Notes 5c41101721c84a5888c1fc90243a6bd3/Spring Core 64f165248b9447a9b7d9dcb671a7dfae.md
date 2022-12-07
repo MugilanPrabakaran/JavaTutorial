@@ -13,3 +13,9 @@ Why we need Spring?
 Use Below GitHub link get code
 
 [GitHub - MugilanPrabakaran/SpringCore-: This Repo is basically learning for Spring Framework](https://github.com/MugilanPrabakaran/SpringCore-)
+
+## What is Dependency Injection?
+
+- Basically Dependency means  in real life we depend on one thing to sustain a situation.
+- Example : 1. Driving licenses ( we cannot drive without license ) 2. Passport(we cannot travel to other country without passport)
+- Above examples are the explan
