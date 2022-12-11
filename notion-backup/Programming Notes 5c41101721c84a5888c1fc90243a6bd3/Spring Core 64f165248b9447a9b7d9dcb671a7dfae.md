@@ -3,6 +3,10 @@
 **What is Spring?**
 
 - Spring is a Framework to work with java
+- Spring helps us to create light weight  application
+- Light weight means if we create an class it  contain many object
+- If it has many objects we have to declare so it has some weight .
+- Less Weight = More Performance
 
 Why we need Spring?
 
@@ -65,4 +69,43 @@ changes are simply in xml code
         <constructor-arg name="stuName" value="Shrinithi Kulothungan" />
         <constructor-arg name="id" value="102"/>
     </bean>
+```
+
+## Spring Object Injection
+
+For code please visit GitHub 
+
+[SpringCore-/src/Depinjectionobjecttype at master · MugilanPrabakaran/SpringCore-](https://github.com/MugilanPrabakaran/SpringCore-/tree/master/src/Depinjectionobjecttype)
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- Approach 1-->
+    <bean id = "stu" class ="Depinjectionobjecttype.Studentdemo" >
+        <!-- Here assing value for just sake of creating the object-->
+        <property name="id" value="100" > </property>
+        <property name="matchcheat">
+            <!-- Here we are Notifying spring "Hey Spring it was not a normal value it is Object value"-->
+            <bean class ="Depinjectionobjecttype.Mathcheat"></bean>
+        </property>
+    </bean>
+    <!--Example  2 for another student-->
+    <bean id = "anstu" class ="Depinjectionobjecttype.AnotherStudent">
+        <property name="newcheat">
+            <bean class ="Depinjectionobjecttype.Mathcheat"></bean>
+        </property>
+    </bean>
+    <!--Approach 2 -->
+    <bean id ="cheatdemo" class = "Depinjectionobjecttype.Mathcheat"></bean>
+    <bean id = "stu" class ="Depinjectionobjecttype.Studentdemo" >
+        <property name="id" value="100" ></property>
+        <property name="matchcheat" ref="cheatdemo"></property>
+    </bean>
+    <bean id = "anstu" class ="Depinjectionobjecttype.AnotherStudent">
+        <property name="newcheat" ref="cheatdemo"></property>
+    </bean>
+</beans>
 ```
