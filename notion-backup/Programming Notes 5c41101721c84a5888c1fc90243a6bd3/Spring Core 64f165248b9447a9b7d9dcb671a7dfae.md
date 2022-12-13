@@ -56,6 +56,11 @@ Job j ;
 
 changes are simply in xml code
 
+1. Why use property ?
+    
+    If you need to inject values using setter function  then property is the right choice.
+    
+
 ```xml
 <!--below line used to create student object and injecting name in that object -->
     <bean id = "student"  class="DependencyInjectionDemo.studentdetails">
@@ -102,7 +107,7 @@ For code please visit GitHub
     <bean id ="cheatdemo" class = "Depinjectionobjecttype.Mathcheat"></bean>
     <bean id = "stu" class ="Depinjectionobjecttype.Studentdemo" >
         <property name="id" value="100" ></property>
-        <property name="matchcheat" ref="cheatdemo"></property>
+        <property name="matchcheat" ref="cheatdemo"></property>s
     </bean>
     <bean id = "anstu" class ="Depinjectionobjecttype.AnotherStudent">
         <property name="newcheat" ref="cheatdemo"></property>
