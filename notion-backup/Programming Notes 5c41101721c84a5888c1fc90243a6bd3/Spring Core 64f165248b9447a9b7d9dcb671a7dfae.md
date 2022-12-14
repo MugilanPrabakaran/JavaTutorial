@@ -202,3 +202,58 @@ While declaring autowire you can use option like below
             <!--Human human = new Human();
                 human.setHeart(new Heart()):-->
         ```
+        
+        ## What happen if @Autowired in java program itself?
+        
+        we need to mention @Autowired in constructer side  and it wiil work if you move @Autowired  to setter method
+        
+        ```java
+        package AutowiredinSpring;
+        
+        import org.springframework.beans.factory.annotation.Autowired;
+        
+        public class Human {
+            private  Heart heart;
+        
+            public void setHeart(Heart heart) {
+                this.heart = heart;
+            }
+        @Autowired
+            public Human(Heart heart) {
+                this.heart = heart;
+            }
+        public Human(){
+        
+        }
+            public void startPumping(){
+                if (heart != null) {
+                    heart.pump();
+                }
+                else {
+                    System.out.println("Heart stop beating");
+                }
+            }
+        }
+        //Initially autowire is OFF condtion we need turn it ON 
+        ```
+        
+        ```xml
+        <?xml version="1.0" encoding="UTF-8"?>
+        <beans xmlns="http://www.springframework.org/schema/beans"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:context="http://www.springframework.org/schema/context"
+               xsi:schemaLocation="http://www.springframework.org/schema/beans
+                   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                   http://www.springframework.org/schema/context
+                   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+            
+            <!-- Below context code used to TurnON @Autowired in java-->
+            <context:annotation-config/>
+            <bean id = "heartObject" class="AutowiredinSpring.Heart"/>
+            <!-- Heart heart = new Heart();-->
+            <bean id = "human" class = "AutowiredinSpring.Human"/>
+            <!--Human human = new Human();
+                human.setHeart(new Heart()):-->
+        ```
+        
+        ![Untitled](Spring%20Core%2064f165248b9447a9b7d9dcb671a7dfae/Untitled%205.png)
