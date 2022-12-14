@@ -114,3 +114,91 @@ For code please visit GitHub
     </bean>
 </beans>
 ```
+
+## Spring LooseCoupling:
+
+[SpringCore-/src/SpringlooseCoupling at master · MugilanPrabakaran/SpringCore-](https://github.com/MugilanPrabakaran/SpringCore-/tree/master/src/SpringlooseCoupling)
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id ="Dataserviceobject" class = "SimpleProject.Dataservice"></bean>
+    <bean id = "HellotunesObject" class="SimpleProject.HelloTunes"></bean>
+    <bean id = "SMSserviceObject" class="SimpleProject.SMSservice"></bean>
+    <bean id = "ser" class ="SimpleProject.Airtel" >
+        <!-- Airtel ser = new Airtel();-->
+        <property name="services" ref="Dataserviceobject"></property>
+        <!-- ser.setServices(Dataserviceobject);-->
+    </bean>
+    <bean id = "vod" class ="SimpleProject.Vodafone" >
+        <property name="services" ref="HellotunesObject"></property>
+    </bean>
+</beans>
+```
+
+## Spring Auto wire:
+
+Auto wiring is feature in spring which allows us to run  our program without property deceleration.
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="heartObject" class="AutowiredinSpring.Heart"/>
+    <!-- Heart heartObject = new Heart();-->
+    <bean id = "human" class = "AutowiredinSpring.Human">
+        <!-- Human human = new Human();-->
+        <property name="heart" ref ="heartObject"/><!--Here we don't property in Autowire-->
+        <!-- human.setHeart(heartObject);-->
+    </bean>
+```
+
+While declaring autowire you can use option like below 
+
+![Untitled](Spring%20Core%2064f165248b9447a9b7d9dcb671a7dfae/Untitled%202.png)
+
+1. byName 
+    - It means autowire inject the  variable of the Object by  name(heart).
+    
+    ```xml
+    <bean id = "heart" class="AutowiredinSpring.Heart"/>
+        <!-- Heart heart = new Heart();-->
+        <bean id = "human" class = "AutowiredinSpring.Human" autowire="byName"/>
+        <!--Human human = new Human();
+            human.setHeart(new Heart()):-->
+    ```
+    
+    - Reference variable name and bean id name should be match.
+        
+        ![Untitled](Spring%20Core%2064f165248b9447a9b7d9dcb671a7dfae/Untitled%203.png)
+        
+    1. byType
+        - It defines inject the class which is same type
+            
+            ```xml
+            <bean id = "heartObject" class="AutowiredinSpring.Heart"/>
+                <!-- Heart heartObject = new Heart();-->
+                <bean id = "human" class = "AutowiredinSpring.Human" autowire="byType"/>
+                <!--Human human = new Human();
+                    human.setHeart(heartObject):-->
+            ```
+            
+            ![Untitled](Spring%20Core%2064f165248b9447a9b7d9dcb671a7dfae/Untitled%204.png)
+            
+    2. Constructor
+        
+         It means do the injection when the constructor is there.
+        
+        ```xml
+        <bean id = "heartObject" class="AutowiredinSpring.Heart"/>
+            <!-- Heart heart = new Heart();-->
+            <bean id = "human" class = "AutowiredinSpring.Human" autowire="constructor"/>
+            <!--Human human = new Human();
+                human.setHeart(new Heart()):-->
+        ```
