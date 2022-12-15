@@ -257,3 +257,44 @@ While declaring autowire you can use option like below
         ```
         
         ![Untitled](Spring%20Core%2064f165248b9447a9b7d9dcb671a7dfae/Untitled%205.png)
+        
+        ## Spring Qualifier Annotation
+        
+        why we using spring qualifier annotation?
+        
+        Autowire search based on above pic , if it  get error, in that case we use “@Qualifier” 
+        
+        ![Untitled](Spring%20Core%2064f165248b9447a9b7d9dcb671a7dfae/Untitled%206.png)
+        
+        If we are you using Annotation before class then no need for setters and constructors
+        
+        ```java
+        public class Human {
+            private Heart heart;
+            @Autowired
+            @Qualifier("OctopusHeart") //if you are using annotation before  class name setter and getter are no need if any doubt refer Noti 
+            public void setHeart(Heart heart) {
+                this.heart = heart;
+            }
+            public Human(Heart heart) {
+                this.heart = heart;
+            }
+        public Human(){
+        
+        }
+            public void startPumping(){
+                if (heart != null) {
+                    heart.pump();
+                    System.out.println("Name of the Animal is : "+ heart.getNameoftheAnimal()+
+                            ", No of heart : "+heart.getNoofHeart());
+                }
+                else {
+                    System.out.println("Heart stop beating");
+                }
+            }
+        }
+        ```
+        
+        ![After](Spring%20Core%2064f165248b9447a9b7d9dcb671a7dfae/Untitled%207.png)
+        
+        After
