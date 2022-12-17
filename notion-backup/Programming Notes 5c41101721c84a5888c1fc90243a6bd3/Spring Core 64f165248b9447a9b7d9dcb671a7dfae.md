@@ -298,3 +298,75 @@ While declaring autowire you can use option like below
         ![After](Spring%20Core%2064f165248b9447a9b7d9dcb671a7dfae/Untitled%207.png)
         
         After
+        
+        ## Propertyfiles Injection of “@Value and @Required” Annotation
+        
+        ```xml
+        <?xml version="1.0" encoding="UTF-8"?>
+        <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:context="http://www.springframework.org/schema/context"
+               xmlns="http://www.springframework.org/schema/beans"
+               xsi:schemaLocation="http://www.springframework.org/schema/beans
+                   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                   http://www.springframework.org/schema/context
+                   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+            <!-- it is used to connecting the property files to XML-->
+            <context:property-placeholder location="classpath:PropertyfilesInjectuingDemo/injectting-files.properties"/>
+            <bean id = "student" class="PropertyfilesInjectuingDemo.Student">
+                <!-- we are loading Dynamic values by using ${}-->
+               <property name="name" value="${student.name}" />
+                <property name="hobby" value="${student.hobby}"  />
+                <property  name="Address" value="${student.Address}"/>
+            </bean>
+        ```
+        
+        Property files
+        
+        ```
+        student.name = Shrinithi
+        student.hobby = Reading
+        student.Address = Karaikudi
+        ```
+        
+        ## “@Value” and “@Required”
+        
+        We can directly inject values using “@Value” Annotation and setting condtion using “@Required”
+        
+        1. Below we can see the  annotation of direct injecting and Dynamic value injection using property files like above.
+        2.  @Required in deprecated in latest  java but if you need hobby value you can set required.
+        
+        ```java
+        package PropertyfilesInjectuingDemo;
+        
+        import org.springframework.beans.factory.annotation.Required;
+        import org.springframework.beans.factory.annotation.Value;
+        
+        public class Student {
+        
+            private String name;
+            private String hobby;
+            private String Address;
+            @Value("${student.name}") // Dynamic Value Initilization
+            //@Value("Mugilan") //While using @Value annotation  there no need of properties file
+            public void setName(String name) {
+                this.name = name;
+            }
+            @Required
+            @Value("${student.hobby}")
+        //    @Value("Cricket")
+            public void setHobby(String hobby) {
+                this.hobby = hobby;
+            }
+        //    @Value("Salem")
+            @Value("${student.Address}")
+            public void setAddress(String address) {
+                Address = address;
+            }
+        
+            public void displayinfo(){
+                System.out.println("Student name is : "+ name );
+                System.out.println("Student hobby : " + hobby);
+                System.out.println("Student Address : " + Address);
+            }
+        }
+        ```
