@@ -370,3 +370,20 @@ While declaring autowire you can use option like below
             }
         }
         ```
+        
+        ## “@Component” Annotation
+        
+        - “@Component” annotation is use to create a bean for class in new way
+        - Usually how we declare bean in XML  file like below right?
+            
+            <aside>
+            💡 `<bean id = "collegebean" class = "Annotation_All_in_1.College"/>`
+            
+            </aside>
+            
+        - now we are creating Object in java file itself using “@Component”.
+            
+            <aside>
+            💡
+            
+            </aside>
