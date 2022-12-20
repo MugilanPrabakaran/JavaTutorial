@@ -384,6 +384,13 @@ While declaring autowire you can use option like below
         - now we are creating Object in java file itself using “@Component”.
             
             <aside>
-            💡
+            💡 Declaring “@Component “ without above XML line
             
+            ![Untitled](Spring%20Core%2064f165248b9447a9b7d9dcb671a7dfae/Untitled%208.png)
+            
+            - Activating this annotation using `<context:component-scan base-package="src/Annotation_All_in_1"/>` in XML
             </aside>
+            
+        - Let’s see whole Process of “@Component” Annotation
+        
+        ![Untitled](Spring%20Core%2064f165248b9447a9b7d9dcb671a7dfae/Untitled%209.png)
